@@ -11,6 +11,7 @@ import HomeScreen from './screens/HomeScreen';
 import MainScreen from './screens/MainScreen';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import SearchAuct from './screens/SearchAuct';
+import ListAuct from './screens/SearchAuct';
 
 
 class App extends Component {
@@ -20,6 +21,8 @@ class App extends Component {
   }
 }
 
+
+// MAIN/AUTHORIZATION SCREEN AND ROUTES
 const authStack = createStackNavigator({
   Welcome: {screen: MainScreen},
   Login: {screen: Login},
@@ -30,8 +33,60 @@ const authStack = createStackNavigator({
   }
 })
 
+//FeedStack 
+const FeedStack = createStackNavigator({
+  Feed: {screen: ListAuct},
+},
+{
+  defaultNavigationOptions:{
+    headerTitle: "",
+    headerTransparent: true
+  }
+})
+
+const HomeStack = createStackNavigator({
+  Home: {screen: HomeScreen},
+},
+  {
+    defaultNavigationOptions:{
+      headerTitle: "",
+      headerTransparent: true
+    }
+  }
+)
+
+//BOTTOM TAB NAVIGATOR
+const BottomTabNavigator = createBottomTabNavigator({
+FeedStack,
+HomeStack
+})
+
+const BottomStackNavigator = createStackNavigator({
+  BottomTabNavigator: BottomTabNavigator
+},
+{
+    defaultNavigationOptions:{
+      headerTitle: "",
+      headerTransparent: true
+    }
+})
+
+// THIS IS THE STACK AFTER LOG IN IS SUCCESFULL
+const AppStack = createStackNavigator({
+  Dashboard: {screen: BottomStackNavigator},
+}, 
+{
+  defaultNavigationOptions:{
+    headerTitle: "",
+    headerTransparent: true
+  }
+})
+
+
+// SWITCH NAVIGATOR
 const AppSwitchNavigator = createSwitchNavigator({
   Welcome: {screen: authStack},
+  App: {screen: AppStack}
 })
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
