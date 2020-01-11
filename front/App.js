@@ -5,11 +5,13 @@ import {Provider, Consumer } from './hookAndContext/context';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import HomeScreen from './screens/HomeScreen';
 import MainScreen from './screens/MainScreen';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import ProfileScreen from './screens/ProfileScreen';
+import ManageScreen from './screens/ManageScreen';
 import SearchAuct from './screens/SearchAuct';
 import ListAuct from './screens/SearchAuct';
 
@@ -33,7 +35,7 @@ const authStack = createStackNavigator({
   }
 })
 
-//FeedStack 
+//ELEMENT OF BOTTOM TAB NAVIGATOR FEED SHOWING ALL THE AUCTIONS GOING ON
 const FeedStack = createStackNavigator({
   Feed: {screen: ListAuct},
 },
@@ -44,6 +46,7 @@ const FeedStack = createStackNavigator({
   }
 })
 
+//ELEMENT OF BOTTOM TAB NAVIGATOR HOME
 const HomeStack = createStackNavigator({
   Home: {screen: HomeScreen},
 },
@@ -55,10 +58,22 @@ const HomeStack = createStackNavigator({
   }
 )
 
+//ELEMENT OF BOTTOM TAB NAVIGATOR WHERE SHOWS AUCTS USER IS PARTICIPATING, DOING, DONE
+const ManageStack = createStackNavigator({
+  Manage: {screen: ManageScreen}
+})
+
+//ELEMENT OF BOTTOM TAB NAVIGATOR SHOWS ACTUAL USER PROFILE
+const ProfileStack = createStackNavigator({
+  Profile: {screen: ProfileScreen}
+})
+
 //BOTTOM TAB NAVIGATOR
 const BottomTabNavigator = createBottomTabNavigator({
 FeedStack,
-HomeStack
+HomeStack,
+ManageStack,
+ProfileStack,
 })
 
 const BottomStackNavigator = createStackNavigator({
