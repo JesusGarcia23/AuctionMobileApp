@@ -18,7 +18,8 @@ const userSchema = new Schema({
     },
     auctions: {
         type: [{ type: Schema.Types.ObjectId, ref: "Auction"}],
-    }
+    },
+    notification: [{ type: Schema.Types.ObjectId, ref: "Notification"}]
 }, {
     timestamps: true
 })

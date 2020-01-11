@@ -9,6 +9,7 @@ const socket = io('http://192.168.1.75:5000')
  class Provider extends Component {
     state = {
         auctions: [],
+        notifications: []
     }
 
  logIn = ({email, password}) => {
@@ -16,7 +17,7 @@ const socket = io('http://192.168.1.75:5000')
     api.post('/login', {email, password}, {withCredentials: true})
     .then(response => {
         console.log(response)
-        if(response.data.message) ;
+        if(response.data.message);
         else {
             window.location = '/dashboard'
         }
