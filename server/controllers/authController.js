@@ -4,15 +4,15 @@ const passport = require('passport');
 
 module.exports = {
     signUp(req, res) {
-        const {firstName, lastName, email, password} = req.body;
+        const {email, password} = req.body;
         
         User.findOne( {email }).then(userFound => {
             if(!userFound){
                 const bcryptsalt = 10;
                 const salt = bcrypt.genSaltSync(bcryptsalt);
                 const encryptedPassword = bcrypt.hashSync(password, salt);
-                const bonsais = []
-                User.create({ firstName, lastName, email, password: encryptedPassword, bonsais})
+                const auctions = []
+                User.create({ firstName: null, lastName: null, email, password: encryptedPassword, auctions})
                 .then(newUser => {
                     console.log("NEW USER!", newUser);
                     res.json({done: true});

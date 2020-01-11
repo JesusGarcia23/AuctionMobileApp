@@ -7,3 +7,6 @@ mongoose.connect(`mongodb://localhost/auctionapp`, { useNewUrlParser: true, useC
 .catch(err => {
     console.error('Error connecting to mongo', err)
 })
+
+//     baseURL: 'http://192.168.1.75:19000:5000'
+//

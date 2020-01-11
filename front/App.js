@@ -19,7 +19,11 @@ import ListAuct from './screens/SearchAuct';
 class App extends Component {
 
   render(){
-    return <AppContainer/>
+    return (
+    <Provider>
+    <AppContainer/>
+    </Provider>
+    )
   }
 }
 
@@ -110,7 +114,7 @@ export default App;
 
 
 
-
+// ({screenProps, navigation}) => <Consumer>{ctx => <Signup data={ctx} navigation={navigation} />} </Consumer> 
 
 
 

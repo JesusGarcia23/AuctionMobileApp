@@ -1,52 +1,52 @@
 import React, { Component } from 'react';
 const io = require('socket.io-client');
-//import api from '../services/api';
+import api from '../services/api';
 
 const Context = React.createContext()
 
-const socket = io('http://localhost:5000')
+const socket = io('http://192.168.1.75:5000')
 
-export class Provider extends Component {
+ class Provider extends Component {
     state = {
         auctions: [],
     }
 
  logIn = ({email, password}) => {
 
-//     api.post('/login', {email, password}, {withCredentials: true})
-//     .then(response => {
-//         console.log(response)
-//         if(response.data.message) ;
-//         else {
-//             window.location = '/dashboard'
-//         }
-//         setCurrentUser(response.data.user)
-//     }).catch((err) => {console.log(`An unexpected error ocurred while login ${err}`);
-// })
+    api.post('/login', {email, password}, {withCredentials: true})
+    .then(response => {
+        console.log(response)
+        if(response.data.message) ;
+        else {
+            window.location = '/dashboard'
+        }
+        setCurrentUser(response.data.user)
+    }).catch((err) => {console.log(`An unexpected error ocurred while login ${err}`);
+})
 
 }
 
  signUp = ({firstName, lastName, email, password}) => {
 
-    // api.post('/signup', {firstName, lastName, email, password})
-    // .then(response => {
+    api.post('/signup', {firstName, lastName, email, password})
+    .then(response => {
         
-    //     if(response.data.message) setMessage(response.data.message);
+        if(response.data.message) setMessage(response.data.message);
 
-    //     else if(response.data.done) {
-    //          alert("Your account was successfully created!"); 
-    //          window.location = '/login';}
+        else if(response.data.done) {
+             alert("Your account was successfully created!"); 
+             window.location = '/login';}
 
-    //     else { }
-    // }).catch(err => console.error(err));
+        else { }
+    }).catch(err => console.error(err));
 
 }
 
 
  logOut = () => {
-    // api.delete('/logout', {withCredentials: true})
-    // .then(response => {
-    // }).catch(err => console.error(`An error happened while trying to log out`));
+    api.delete('/logout', {withCredentials: true})
+    .then(response => {
+    }).catch(err => console.error(`An error happened while trying to log out`));
    
 }
 
@@ -86,8 +86,8 @@ export class Provider extends Component {
             break;
         }
 
-        case "newBonsai": {
-            newBonsai(data);
+        case "newProduct": {
+            newProduct(data);
             break;
         }
         default:
@@ -98,11 +98,11 @@ export class Provider extends Component {
 
 componentDidMount(){
     socket.emit('init_communication');
-    // api.get('/loggedin', {withCredentials: true})
-    // .then(response => {
-    // }).catch(err => {
-    //     console.error(err);
-    // });
+    api.get('/loggedin', {withCredentials: true})
+    .then(response => {
+    }).catch(err => {
+        console.error(err);
+    });
     // socket.on('reload', reload)
 };
 
@@ -114,5 +114,5 @@ render(){
 
 }
 
-export const Consumer = Context.Consumer
+export { Context , Provider }
 

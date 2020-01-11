@@ -4,11 +4,9 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
     firstName: {
         type: String,
-        required: true
     },
     lastName: {
         type: String,
-        required: true
     },
     email: {
         type: String,
@@ -18,6 +16,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    auctions: {
+        type: [{ type: Schema.Types.ObjectId, ref: "Auction"}],
+    }
 }, {
     timestamps: true
 })

@@ -1,16 +1,36 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import api from '../services/api';
 
-const Signup = () => {
+
+const Signup = (props) => {
+
+    console.log(props)
 
     const [ email, setEmail ] = useState("");
 
     const [ password, setPassword ] = useState("");
 
-    const sayInfo = () => {
-        alert(password);
-        setEmail("");
-        setPassword("");
+    const handleEmailInput = (e) => {
+      e.preventDefault();
+      setEmail(e.nativeEvent.text);
+
+    }
+
+    const handlePsswrdInput = (e) => {
+      e.preventDefault();
+      setPassword(e.nativeEvent.text);
+
+    }
+
+    const signupUser = () => {
+      api.post('/signup', {email, password})
+      .then(newUser => {
+        console.log(newUser);
+      }).catch(err => {
+        console.log(err)
+      });
+
       }
   
     return(
@@ -19,11 +39,11 @@ const Signup = () => {
         <Text style={styles.title}>Sign Up</Text>
 
         <Text>Email</Text>
-        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => setEmail(e.nativeEvent.text)} value={email}/>
+        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => handleEmailInput(e)} value={email}/>
 
         <Text>Password</Text>
-        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => setPassword(e.nativeEvent.text)} value={password}/>
-        <Button title='Sign up' onPress={sayInfo}/>
+        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => handlePsswrdInput(e)} value={password}/>
+        <Button title='Sign up' onPress={signupUser}/>
         </View>
     )
 }
