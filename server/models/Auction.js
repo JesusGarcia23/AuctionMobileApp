@@ -26,6 +26,9 @@ const auctionSchema = new Schema({
     },
     bids: [{type: Schema.Types.ObjectId, ref: "Bid"}],
 
+},
+{
+    timestamps: true
 });
 
 const Auction = mongoose.model("Auction", auctionSchema);
