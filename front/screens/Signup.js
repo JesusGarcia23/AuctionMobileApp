@@ -1,11 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import api from '../services/api';
 
-
 const Signup = (props) => {
-
-    console.log(props)
 
     const [ email, setEmail ] = useState("");
 

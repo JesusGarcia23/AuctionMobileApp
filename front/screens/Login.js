@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
+import api from '../services/api';
 
 const Login = (props) => {
 
@@ -7,11 +8,27 @@ const Login = (props) => {
 
   const [ password, setPassword ] = useState("");
 
-  const sayInfo = () => {
-    setEmail("");
-    setPassword("");
-    props.navigation.navigate('App')
+  const handleEmailInput = (e) => {
+    e.preventDefault();
+    setEmail(e.nativeEvent.text);
+
   }
+
+  const handlePsswrdInput = (e) => {
+    e.preventDefault();
+    setPassword(e.nativeEvent.text);
+
+  }
+
+  const loginUser = () => {
+    api.post('/login', {email, password}, {withCredentials: true})
+    .then(response => {
+      console.log(response);
+       //   props.navigation.navigate('App')
+    }).catch(err => {
+      console.error(err);
+    });
+  };
 
 
     return(
@@ -20,11 +37,11 @@ const Login = (props) => {
         <Text style={styles.title}>Login</Text>
 
         <Text>Email</Text>
-        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => setEmail(e.nativeEvent.text)} value={email}/>
+        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => handleEmailInput(e)} value={email}/>
 
         <Text>Password</Text>
-        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => setPassword(e.nativeEvent.text)} value={password}/>
-        <Button title='Log in' onPress={sayInfo}></Button>
+        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => handlePsswrdInput(e)} value={password}/>
+        <Button title='Log in' onPress={loginUser}></Button>
         </View>
 
     )

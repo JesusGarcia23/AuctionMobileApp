@@ -9,7 +9,8 @@ const socket = io('http://192.168.1.75:5000')
  class Provider extends Component {
     state = {
         auctions: [],
-        notifications: []
+        notifications: [],
+        login: this.logIn,
     }
 
  logIn = ({email, password}) => {
