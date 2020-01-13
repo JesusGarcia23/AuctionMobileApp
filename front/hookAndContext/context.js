@@ -8,9 +8,9 @@ const socket = io('http://192.168.1.75:5000')
 
  class Provider extends Component {
     state = {
+        user: null,
         auctions: [],
         notifications: [],
-        login: this.logIn,
     }
 
  logIn = ({email, password}) => {
@@ -22,7 +22,7 @@ const socket = io('http://192.168.1.75:5000')
         else {
             window.location = '/dashboard'
         }
-        setCurrentUser(response.data.user)
+        this.setState({user: response.data.user})
     }).catch((err) => {console.log(`An unexpected error ocurred while login ${err}`);
 })
 
@@ -102,6 +102,10 @@ componentDidMount(){
     socket.emit('init_communication');
     api.get('/loggedin', {withCredentials: true})
     .then(response => {
+        if(response.data){
+            this.setState({user: response.data})
+        }
+
     }).catch(err => {
         console.error(err);
     });

@@ -39,7 +39,7 @@ const Signup = (props) => {
         <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => handleEmailInput(e)} value={email}/>
 
         <Text>Password</Text>
-        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => handlePsswrdInput(e)} value={password}/>
+        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => handlePsswrdInput(e)} value={password} secureTextEntry={true}jj/>
         <Button title='Sign up' onPress={signupUser}/>
         </View>
     )

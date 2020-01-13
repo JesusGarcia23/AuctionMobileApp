@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
+
 const MainScreen = (props) => {
+
     return(
         <View style={styles.container}>
         <Button title='Log In' onPress={() => props.navigation.navigate('Login')}/>

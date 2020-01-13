@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
+import AuthLoadingScreen from './screens/AuthLoadingScreen';
 import HomeScreen from './screens/HomeScreen';
 import MainScreen from './screens/MainScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -30,6 +31,7 @@ class App extends Component {
 
 // MAIN/AUTHORIZATION SCREEN AND ROUTES
 const authStack = createStackNavigator({
+  AuthLoading: {screen: AuthLoadingScreen},
   Welcome: {screen: MainScreen},
   Login: {screen: Login},
   Signup: {screen: Signup},

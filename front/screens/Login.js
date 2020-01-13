@@ -23,8 +23,12 @@ const Login = (props) => {
   const loginUser = () => {
     api.post('/login', {email, password}, {withCredentials: true})
     .then(response => {
-      console.log(response);
-       //   props.navigation.navigate('App')
+      console.log(response.data)
+      if(response.data.user){
+        console.log("USER LOGGED IN!")
+        props.navigation.navigate('App')
+      }
+       
     }).catch(err => {
       console.error(err);
     });
@@ -37,10 +41,10 @@ const Login = (props) => {
         <Text style={styles.title}>Login</Text>
 
         <Text>Email</Text>
-        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => handleEmailInput(e)} value={email}/>
+        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => handleEmailInput(e)} value={email} />
 
         <Text>Password</Text>
-        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => handlePsswrdInput(e)} value={password}/>
+        <TextInput style={{height: 40, width: 250, borderWidth: 0.5}} onChange={e => handlePsswrdInput(e)} value={password} secureTextEntry={true}/>
         <Button title='Log in' onPress={loginUser}></Button>
         </View>
 
