@@ -10,6 +10,8 @@ const AuthLoadingScreen = (props) => {
 
     if(user !== null){
         props.navigation.navigate('App');
+    }else{
+        props.navigation.navigate('Welcome');     
     }
 
     //  checkUser()

@@ -1,8 +1,21 @@
 import React, { useContext } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import { Context } from '../hookAndContext/context';
 
 
 const MainScreen = (props) => {
+
+  console.log(props);
+
+  const mainContext = useContext(Context);
+
+  const { user } = mainContext;
+
+  if(user !== null){
+      props.navigation.navigate('App');
+  }else{
+      props.navigation.navigate('Welcome');     
+  }
 
     return(
         <View style={styles.container}>

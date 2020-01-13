@@ -31,8 +31,9 @@ class App extends Component {
 
 // MAIN/AUTHORIZATION SCREEN AND ROUTES
 const authStack = createStackNavigator({
-  AuthLoading: {screen: AuthLoadingScreen},
-  Welcome: {screen: MainScreen},
+  // AuthLoading: {screen: AuthLoadingScreen},
+  Welcome: {screen: MainScreen,
+    headerTransparent: true},
   Login: {screen: Login},
   Signup: {screen: Signup},
 }, {
