@@ -4,8 +4,7 @@ const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
 
 passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, done) => {
-    console.log(email)
-    console.log(password)
+    
     User.findOne({email})
     .then(foundUser => {
         if(!foundUser || !bcrypt.compareSync(password, foundUser.password)) { 

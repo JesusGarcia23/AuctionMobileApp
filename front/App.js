@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Provider, Consumer } from './hookAndContext/context';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import Header from './components/Header';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
@@ -32,8 +33,7 @@ class App extends Component {
 // MAIN/AUTHORIZATION SCREEN AND ROUTES
 const authStack = createStackNavigator({
   // AuthLoading: {screen: AuthLoadingScreen},
-  Welcome: {screen: MainScreen,
-    headerTransparent: true},
+  Welcome: {screen: MainScreen},
   Login: {screen: Login},
   Signup: {screen: Signup},
 }, {
@@ -44,31 +44,30 @@ const authStack = createStackNavigator({
 
 //ELEMENT OF BOTTOM TAB NAVIGATOR FEED SHOWING ALL THE AUCTIONS GOING ON
 const FeedStack = createStackNavigator({
-  Feed: {screen: ListAuct},
-},
-{
-  defaultNavigationOptions:{
-    headerTitle: "",
-    headerTransparent: true
+  Feed: {screen: ListAuct,
+    navigationOptions: {
+      header: () => <Header/>
+    }, 
   }
-})
+});
 
 //ELEMENT OF BOTTOM TAB NAVIGATOR HOME
 const HomeStack = createStackNavigator({
-  Home: {screen: HomeScreen},
-},
-  {
-    defaultNavigationOptions:{
-      headerTitle: "",
-      headerTransparent: true
-    }
+  Home: {screen: HomeScreen,
+    navigationOptions: {
+      header: () => <Header/>
+    }, 
   }
-)
+});
 
 //ELEMENT OF BOTTOM TAB NAVIGATOR WHERE SHOWS AUCTS USER IS PARTICIPATING, DOING, DONE
 const ManageStack = createStackNavigator({
-  Manage: {screen: ManageScreen}
-})
+  Manage: {screen: ManageScreen,
+     navigationOptions: {
+       header: () => <Header/>
+     },
+    }
+});
 
 //ELEMENT OF BOTTOM TAB NAVIGATOR SHOWS ACTUAL USER PROFILE
 const ProfileStack = createStackNavigator({
@@ -114,8 +113,6 @@ const AppSwitchNavigator = createSwitchNavigator({
 const AppContainer = createAppContainer(AppSwitchNavigator);
 
 export default App;
-
-
 
 // ({screenProps, navigation}) => <Consumer>{ctx => <Signup data={ctx} navigation={navigation} />} </Consumer> 
 
