@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Provider, Consumer } from './hookAndContext/context';
+import {Provider, Context, SecondContext } from './hookAndContext/context';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import ManageHeader from './components/ManageHeader';
 import Header from './components/Header';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
@@ -45,26 +46,26 @@ const authStack = createStackNavigator({
 //ELEMENT OF BOTTOM TAB NAVIGATOR FEED SHOWING ALL THE AUCTIONS GOING ON
 const FeedStack = createStackNavigator({
   Feed: {screen: ListAuct,
-    navigationOptions: {
-      header: () => <Header/>
-    }, 
+    navigationOptions: ({navigation}) => ({
+      header: () => <Header data={navigation.state}/>
+    }), 
   }
 });
 
 //ELEMENT OF BOTTOM TAB NAVIGATOR HOME
 const HomeStack = createStackNavigator({
   Home: {screen: HomeScreen,
-    navigationOptions: {
-      header: () => <Header/>
-    }, 
+    navigationOptions:({navigation}) => ({
+      header: () => <Header data={navigation.state}/>
+    }), 
   }
 });
 
 //ELEMENT OF BOTTOM TAB NAVIGATOR WHERE SHOWS AUCTS USER IS PARTICIPATING, DOING, DONE
 const ManageStack = createStackNavigator({
   Manage: {screen: ManageScreen,
-     navigationOptions: {
-       header: () => <Header/>
+     navigationOptions:{
+       header: () => <Context>{ctx => <ManageHeader data={ctx}/>}</Context>
      },
     }
 });

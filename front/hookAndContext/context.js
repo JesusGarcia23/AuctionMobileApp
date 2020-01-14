@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 const io = require('socket.io-client');
 import api from '../services/api';
 
-const Context = React.createContext()
+const Context = React.createContext();
 
 const socket = io('http://192.168.1.75:5000')
 
@@ -11,9 +11,24 @@ const socket = io('http://192.168.1.75:5000')
         user: null,
         auctions: [],
         notifications: [],
+        logIn: this.logIn
     }
 
- logIn = ({email, password}) => {
+componentDidMount(){
+    socket.emit('init_communication');
+    api.get('/loggedin', {withCredentials: true})
+    .then(response => {
+        if(response.data){
+            this.setState({user: response.data})
+        }
+
+    }).catch(err => {
+        console.error(err);
+    });
+    // socket.on('reload', reload)
+};
+
+logIn({email, password}){
 
     api.post('/login', {email, password}, {withCredentials: true})
     .then(response => {
@@ -28,7 +43,7 @@ const socket = io('http://192.168.1.75:5000')
 
 }
 
- signUp = ({firstName, lastName, email, password}) => {
+signUp({firstName, lastName, email, password}){
 
     api.post('/signup', {firstName, lastName, email, password})
     .then(response => {
@@ -45,21 +60,21 @@ const socket = io('http://192.168.1.75:5000')
 }
 
 
- logOut = () => {
+logOut(){
     api.delete('/logout', {withCredentials: true})
     .then(response => {
     }).catch(err => console.error(`An error happened while trying to log out`));
    
 }
 
- newProduct = ({description}) => {
+newProduct({description}){
     // api.post('/newBonsai', {description})
     // .then(response => {
     //     console.log(response);
     // }).catch(err => console.error(err));
 }
 
- uploadNewImage = async (e) => {
+async uploadNewImage(e){
     e.preventDefault();
     console.log(imageUpload)
     const time = new Date();
@@ -75,7 +90,7 @@ const socket = io('http://192.168.1.75:5000')
     // }).catch(err => console.error(err))
 }
 
- handler = (data, type, props) => {
+handler(data, type, props){
     console.log(type)
     switch(type){
         case "login": {
@@ -97,28 +112,14 @@ const socket = io('http://192.168.1.75:5000')
     }
 }
 
-
-componentDidMount(){
-    socket.emit('init_communication');
-    api.get('/loggedin', {withCredentials: true})
-    .then(response => {
-        if(response.data){
-            this.setState({user: response.data})
-        }
-
-    }).catch(err => {
-        console.error(err);
-    });
-    // socket.on('reload', reload)
-};
-
-
 // const reload = () => socket.emit('init_communication')
 render(){
     return (<Context.Provider value={this.state}>{this.props.children}</Context.Provider>);
 }
 
 }
+
+export const ContextConsumer = Context.Consumer
 
 export { Context , Provider }
 

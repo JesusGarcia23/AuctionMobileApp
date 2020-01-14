@@ -5,8 +5,6 @@ import { Context } from '../hookAndContext/context';
 
 const MainScreen = (props) => {
 
-  console.log(props);
-
   const mainContext = useContext(Context);
 
   const { user } = mainContext;

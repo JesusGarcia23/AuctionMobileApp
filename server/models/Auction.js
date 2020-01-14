@@ -22,8 +22,10 @@ const auctionSchema = new Schema({
         type: Number,
     },
     imageProduct: {
-        type: {type: Schema.Types.ObjectId, ref: "Image"}
+        type: Schema.Types.ObjectId, ref: "Image"
     },
+    participants: [{type: Schema.Types.ObjectId, ref: "User"}],
+
     bids: [{type: Schema.Types.ObjectId, ref: "Bid"}],
 
 },
