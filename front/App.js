@@ -11,6 +11,7 @@ import Header from './components/Header';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import CreateScreen from './screens/CreateScreen';
+import CameraScreen from './screens/CameraScreen';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
 import HomeScreen from './screens/HomeScreen';
 import MainScreen from './screens/MainScreen';
@@ -78,7 +79,8 @@ const ProfileStack = createStackNavigator({
 
 //ELEMENT OF BOTTOM TAB NAVIGATOR TO CREATE NEW ITEM
 const createStack = createStackNavigator({
-  Create: {screen: CreateScreen}
+  Create: {screen: CreateScreen},
+  Camera: {screen: CameraScreen},
 })
 
 //BOTTOM TAB NAVIGATOR
@@ -115,7 +117,7 @@ const AppStack = createStackNavigator({
 // SWITCH NAVIGATOR
 const AppSwitchNavigator = createSwitchNavigator({
   Welcome: {screen: authStack},
-  App: {screen: AppStack}
+  App: {screen: AppStack},
 })
 
 const AppContainer = createAppContainer(AppSwitchNavigator);

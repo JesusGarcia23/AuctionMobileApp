@@ -11,6 +11,12 @@ const socket = io('http://192.168.1.75:5000')
         user: null,
         auctions: [],
         notifications: [],
+        auctionTitle: '',
+        auctionStartingPrice: '',
+        imageProduct: null,
+        bid: '',
+        auctionDescription: '',
+
         logIn: this.logIn
     }
 
