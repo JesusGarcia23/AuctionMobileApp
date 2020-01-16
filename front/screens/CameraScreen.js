@@ -18,6 +18,7 @@ class CameraScreen extends React.Component{
         if(this.camera) {
             let photo = await this.camera.takePictureAsync();
             console.log(photo);
+            this.props.navigation.navigate('Create');
         }
     }
 
