@@ -10,6 +10,7 @@ import ManageHeader from './components/ManageHeader';
 import Header from './components/Header';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
+import CreateScreen from './screens/CreateScreen';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
 import HomeScreen from './screens/HomeScreen';
 import MainScreen from './screens/MainScreen';
@@ -75,10 +76,16 @@ const ProfileStack = createStackNavigator({
   Profile: {screen: ProfileScreen}
 })
 
+//ELEMENT OF BOTTOM TAB NAVIGATOR TO CREATE NEW ITEM
+const createStack = createStackNavigator({
+  Create: {screen: CreateScreen}
+})
+
 //BOTTOM TAB NAVIGATOR
 const BottomTabNavigator = createBottomTabNavigator({
 FeedStack,
 HomeStack,
+createStack,
 ManageStack,
 ProfileStack,
 })
