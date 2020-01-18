@@ -1,30 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {View, Text, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
+import { Context } from '../hookAndContext/context';
 
-class CameraScreen extends React.Component{
+const CameraScreen = (props) => {
 
-    state = {
-        hasPermission: null,
-        type: Camera.Constants.Type.back,
-    }
+    const cameraContext = useContext(Context);
 
-    async componentDidMount(){
-        const { status } = await Camera.requestPermissionsAsync();
-        this.setState({hasPermission: status === 'granted'})
-    }
+    const [hasPermission, setHasPermission] = useState(null);
+    const [type, setType] = useState(Camera.Constants.Type.back);
 
-   async takePicture() {
+    useEffect(() => {
+        (async () => {
+          const { status } = await Camera.requestPermissionsAsync();
+          setHasPermission(status === 'granted');
+        })();
+      }, []);
+
+    takePicture = async () => {
         if(this.camera) {
             let photo = await this.camera.takePictureAsync();
+            console.log("IT DID IT")
             console.log(photo);
-            this.props.navigation.navigate('Create');
+            console.log("CONTEXT");
+            console.log(cameraContext);
+            props.navigation.navigate('Create');
         }
     }
 
-
-    render(){
-        const { hasPermission, type, camera } = this.state;
+        // const { hasPermission, type } = this.state;
 
         if(hasPermission === null) {
             return <View />
@@ -49,16 +53,16 @@ class CameraScreen extends React.Component{
                         alignItems: 'center',
                     }}
                     onPress={() => {
-                        this.setState({
-                        type: type === Camera.Constants.Type.back
-                            ? Camera.Constants.Type.front
-                            : Camera.Constants.Type.back
-                    });
+                        setType(
+                            type === Camera.Constants.Type.back
+                              ? Camera.Constants.Type.front
+                              : Camera.Constants.Type.back
+                          );
                     }}>
                     <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}> Flip </Text>
                     </TouchableOpacity>
     
-                    <TouchableOpacity onPress={() => {this.takePicture()}}>
+                    <TouchableOpacity onPress={() => {takePicture()}}>
     
                     <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>Take Picture</Text>
                     </TouchableOpacity>
@@ -67,8 +71,7 @@ class CameraScreen extends React.Component{
             </View>
             );
 
-        }
-}
+    }
  export default CameraScreen;
 
  

@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import {View, Text, Button} from 'react-native';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
+import {View, Text, Image, Button} from 'react-native';
+import { Context } from '../hookAndContext/context';
 
 const CreateScreen = (props) => {
+
+    const createContext = useContext(Context);
 
     const askPermission = () => {
         props.navigation.navigate('Camera');
@@ -10,6 +13,7 @@ const CreateScreen = (props) => {
 
 return(
     <View>
+    <Image style={{width: 50, height: 50}} source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}/>
     <Text>Create</Text>
     <Button title='Take a picture' onPress={() => askPermission()}/>
     <Button title='Choose a picture from gallery' onPress={() => console.log("CHOOSE PICTURE")}/>

@@ -34,6 +34,11 @@ componentDidMount(){
     // socket.on('reload', reload)
 };
 
+updatePicture(theImg){
+    console.log("THIS IS PICTURE");
+    console.log(theImg);
+}
+
 logIn({email, password}){
 
     api.post('/login', {email, password}, {withCredentials: true})
