@@ -24,7 +24,9 @@ const CameraScreen = (props) => {
             console.log(photo);
             console.log("CONTEXT");
             console.log(cameraContext);
-            props.navigation.navigate('Create');
+            const { updatePicture } = cameraContext;
+
+            updatePicture(photo, props);
         }
     }
 

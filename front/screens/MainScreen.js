@@ -6,10 +6,12 @@ import { Context } from '../hookAndContext/context';
 const MainScreen = (props) => {
 
   const mainContext = useContext(Context);
+  console.log("MAIN CONTEXT")
+  console.log(mainContext);
 
-  const { user } = mainContext;
+  const { currentUser } = mainContext;
 
-  if(user !== null){
+  if(currentUser !== null){
       props.navigation.navigate('App');
   }else{
       props.navigation.navigate('Welcome');     

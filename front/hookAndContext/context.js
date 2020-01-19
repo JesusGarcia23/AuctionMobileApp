@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 const io = require('socket.io-client');
 import api from '../services/api';
 
@@ -6,9 +6,10 @@ const Context = React.createContext();
 
 const socket = io('http://192.168.1.75:5000')
 
- class Provider extends Component {
-    state = {
-        user: null,
+ const Provider = (props) => {
+
+    const state = {
+        user: currentUser,
         auctions: [],
         notifications: [],
         auctionTitle: '',
@@ -16,30 +17,42 @@ const socket = io('http://192.168.1.75:5000')
         imageProduct: null,
         bid: '',
         auctionDescription: '',
-
-        logIn: this.logIn
+        updatePicture: updatePicture,
+        logIn: logIn
     }
 
-componentDidMount(){
-    socket.emit('init_communication');
+    const [currentUser, setCurrentUser] = useState(null);
+
+    const [imageProduct, setImageProduct] = useState(null);
+
+    useEffect(() => {
+        socket.emit('init_communication');
+           
     api.get('/loggedin', {withCredentials: true})
     .then(response => {
         if(response.data){
-            this.setState({user: response.data})
+            // this.setState({user: response.data})
+            setCurrentUser(response.data);
         }
 
     }).catch(err => {
         console.error(err);
     });
+    }, []) 
     // socket.on('reload', reload)
-};
 
-updatePicture(theImg){
+const updatePicture = (theImg, props) => {
     console.log("THIS IS PICTURE");
-    console.log(theImg);
+    console.log(theImg.uri);
+    const uri = theImg.uri;
+    setImageProduct(uri);
+    props.navigation.navigate('Create');
+    // this.setState({imageProduct: uri}), () => {
+    //     props.navigation.navigate('Create');
+    // };
 }
 
-logIn({email, password}){
+const logIn = ({email, password}) => {
 
     api.post('/login', {email, password}, {withCredentials: true})
     .then(response => {
@@ -48,13 +61,13 @@ logIn({email, password}){
         else {
             window.location = '/dashboard'
         }
-        this.setState({user: response.data.user})
+        setCurrentUser(response.data.user)
     }).catch((err) => {console.log(`An unexpected error ocurred while login ${err}`);
 })
 
 }
 
-signUp({firstName, lastName, email, password}){
+const signUp = ({firstName, lastName, email, password}) => {
 
     api.post('/signup', {firstName, lastName, email, password})
     .then(response => {
@@ -71,21 +84,21 @@ signUp({firstName, lastName, email, password}){
 }
 
 
-logOut(){
+const logOut = () => {
     api.delete('/logout', {withCredentials: true})
     .then(response => {
     }).catch(err => console.error(`An error happened while trying to log out`));
    
 }
 
-newProduct({description}){
+const newProduct = ({description}) => {
     // api.post('/newBonsai', {description})
     // .then(response => {
     //     console.log(response);
     // }).catch(err => console.error(err));
 }
 
-async uploadNewImage(e){
+const uploadNewImage = async (e) => {
     e.preventDefault();
     console.log(imageUpload)
     const time = new Date();
@@ -101,7 +114,7 @@ async uploadNewImage(e){
     // }).catch(err => console.error(err))
 }
 
-handler(data, type, props){
+const handler = (data, type, props) => {
     console.log(type)
     switch(type){
         case "login": {
@@ -123,10 +136,18 @@ handler(data, type, props){
     }
 }
 
-// const reload = () => socket.emit('init_communication')
-render(){
-    return (<Context.Provider value={this.state}>{this.props.children}</Context.Provider>);
+const data = {
+    currentUser,
+    logIn,
+    imageProduct,
+    setImageProduct,
+    updatePicture
 }
+
+// const reload = () => socket.emit('init_communication')
+
+    return (<Context.Provider value={data}>{props.children}</Context.Provider>);
+
 
 }
 
