@@ -17,7 +17,7 @@ const CreateScreen = (props) => {
 
 return(
     <View>
-    <Image style={{width: 50, height: 50}} source={{uri: `${imageProduct}`}}/>
+    <Image style={{width: 150, height: 150}} source={{uri: `${imageProduct}`}}/>
     <Text>Create</Text>
     <Button title='Take a picture' onPress={() => askPermission()}/>
     <Button title='Choose a picture from gallery' onPress={() => console.log("CHOOSE PICTURE")}/>

@@ -20,9 +20,6 @@ const CameraScreen = (props) => {
     takePicture = async () => {
         if(this.camera) {
             let photo = await this.camera.takePictureAsync();
-            console.log("IT DID IT")
-            console.log(photo);
-            console.log("CONTEXT");
             console.log(cameraContext);
             const { updatePicture } = cameraContext;
 
