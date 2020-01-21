@@ -12,6 +12,7 @@ import Login from './screens/Login';
 import Signup from './screens/Signup';
 import CreateScreen from './screens/CreateScreen';
 import CameraScreen from './screens/CameraScreen';
+import ImagePickerScreen from './screens/ImagePickerScreen';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
 import HomeScreen from './screens/HomeScreen';
 import MainScreen from './screens/MainScreen';
@@ -81,6 +82,7 @@ const ProfileStack = createStackNavigator({
 const createStack = createStackNavigator({
   Create: {screen: CreateScreen},
   Camera: {screen: CameraScreen},
+  Gallery: {screen: ImagePickerScreen}
 })
 
 //BOTTOM TAB NAVIGATOR

@@ -17,6 +17,7 @@ const CameraScreen = (props) => {
         })();
       }, []);
 
+
     takePicture = async () => {
         if(this.camera) {
             let photo = await this.camera.takePictureAsync();
