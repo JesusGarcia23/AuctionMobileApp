@@ -25,6 +25,8 @@ const socket = io('http://192.168.1.75:5000')
 
     const [imageProduct, setImageProduct] = useState(null);
 
+    const [productCategory, setProductCategory] = useState("");
+
     useEffect(() => {
         socket.emit('init_communication');
            
@@ -141,7 +143,9 @@ const data = {
     logIn,
     imageProduct,
     setImageProduct,
-    updatePicture
+    updatePicture,
+    productCategory,
+    setProductCategory
 }
 
 // const reload = () => socket.emit('init_communication')

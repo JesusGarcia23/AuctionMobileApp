@@ -11,8 +11,10 @@ import Header from './components/Header';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import CreateScreen from './screens/CreateScreen';
+import CreateTwoScreen from './screens/CreateTwoScreen';
 import CameraScreen from './screens/CameraScreen';
 import ImagePickerScreen from './screens/ImagePickerScreen';
+import PickerCategoryScreen from './screens/PickerCategoryScreen';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
 import HomeScreen from './screens/HomeScreen';
 import MainScreen from './screens/MainScreen';
@@ -82,7 +84,9 @@ const ProfileStack = createStackNavigator({
 const createStack = createStackNavigator({
   Create: {screen: CreateScreen},
   Camera: {screen: CameraScreen},
-  Gallery: {screen: ImagePickerScreen}
+  Gallery: {screen: ImagePickerScreen},
+  CreateTwo: {screen: CreateTwoScreen},
+  CategoryPicker: {screen: PickerCategoryScreen},
 })
 
 //BOTTOM TAB NAVIGATOR
