@@ -23,9 +23,24 @@ const socket = io('http://192.168.1.75:5000')
 
     const [currentUser, setCurrentUser] = useState(null);
 
+    //New auction values
     const [imageProduct, setImageProduct] = useState(null);
 
     const [productCategory, setProductCategory] = useState("");
+
+    const [productTitle, setProductTitle] = useState("");
+
+    const [productDescript, setProductDescript] = useState("");
+
+    const [startPrice, setStartPrice] = useState(0);
+
+    const [reserve, setReserve] = useState(0);
+
+    const [buyNow, setBuyNow] = useState(0)
+
+    const [limitDay, setLimitDay] = useState(new Date);
+
+
 
     useEffect(() => {
         socket.emit('init_communication');
@@ -145,7 +160,19 @@ const data = {
     setImageProduct,
     updatePicture,
     productCategory,
-    setProductCategory
+    setProductCategory,
+    productTitle, 
+    setProductTitle,
+    productDescript,
+    setProductDescript,
+    startPrice,
+    setStartPrice,
+    reserve,
+    setReserve,
+    limitDay,
+    setLimitDay,
+    buyNow,
+    setBuyNow
 }
 
 // const reload = () => socket.emit('init_communication')

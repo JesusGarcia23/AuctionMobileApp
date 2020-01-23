@@ -9,61 +9,50 @@ const CreateTwoScreen = (props) => {
 
     const [isCheck, setCheck] = useState("");
 
-    console.log(createContext);
+    const { imageProduct, productTitle, setProductTitle, productDescript, setProductDescript } = createContext;
 
-    const { imageProduct } = createContext;
 
-    const checkTheBox = (event, option) => {
+    const checkTheBox = (option) => {
        setCheck(option);
     
     }
+
+    
 
 return(
     <View style={{}}>
     <Image style={{width: 150, height: 150}} source={{uri: `${imageProduct}`}}/>
     <Text>Title</Text>
-    <TextInput style={{height: 40, width: 250, borderWidth: 0.5}}></TextInput>
+    <TextInput style={{height: 40, width: 250, borderWidth: 0.5}}
+    onChangeText={(e) => setProductTitle(e)} value={productTitle}></TextInput>
     <Text>Condition</Text>
     <View style={{flexDirection: 'row', justifyContent: 'center', alignContent: 'space-around'}}>
 
-    <View style={{alignItems: 'center', width: 40}}>
-    <Text>Other</Text>
-    <CheckBox size={20} center={true} containerStyle={{backgroundColor: 'none', width: 40}}
-    checked={isCheck === 'Other'}
-    onPress={() => checkTheBox('Other')}/>
+    <View style={{alignItems: 'center', width: 110}}>
+    <Text>Does not apply</Text>
+    <CheckBox size={20} center={true} containerStyle={{backgroundColor: 'transparent', width: 40}}
+    checked={isCheck === 'Does not apply'}
+    onPress={() => checkTheBox('Does not apply')}/>
     </View>
 
-    <View style={{alignItems: 'center', width: 60}}>
+    <View style={{alignItems: 'center', width:110}}>
     <Text>Used</Text>
-    <CheckBox size={20} center={true} containerStyle={{backgroundColor: 'none', width: 80}}
+    <CheckBox size={20} center={true} containerStyle={{backgroundColor: 'transparent', width: 80}}
     checked={isCheck === 'Used'}
     onPress={() => checkTheBox('Used')}/>
     </View>
 
-    <View style={{alignItems: 'center', width: 80}}>
-    <Text>Open Box</Text>
-    <CheckBox size={20} center={true} containerStyle={{backgroundColor: 'none', width: 80}}
-    checked={isCheck === 'Open Box'}
-    onPress={() => checkTheBox('Open Box')}/>
-    </View>
-
-    <View style={{alignItems: 'center', width: 100}}>
-    <Text>Refurbished</Text>
-    <CheckBox size={20} center={true} containerStyle={{backgroundColor: 'none', width: 80}}
-    checked={isCheck === 'Refurbished'}
-    onPress={() => checkTheBox('Refurbished')}/>
-    </View>
-
-    <View style={{alignItems: 'center', width: 60}}>
+    <View style={{alignItems: 'center', width: 110}}>
     <Text>New</Text>
-    <CheckBox size={20} center={true} containerStyle={{backgroundColor: 'none', width: 80}}
+    <CheckBox size={20} center={true} containerStyle={{backgroundColor: 'transparent', width: 80}}
     checked={isCheck === 'New'}
     onPress={() => checkTheBox('New')}/>
     </View>
 
     </View>
     <Text>Description</Text>
-    <TextInput style={{height: 40, width: 250, borderWidth: 0.5}}></TextInput>
+    <TextInput style={{height: 40, width: 250, borderWidth: 0.5}}
+    onChangeText={(e) => setProductDescript(e)} value={productDescript}></TextInput>
 
     <Button title='STEP 3' onPress={()=> props.navigation.navigate('CreateThree')}></Button>
     </View>
@@ -71,3 +60,5 @@ return(
 }
 
 export default CreateTwoScreen;
+
+//props.navigation.navigate('CreateThree')

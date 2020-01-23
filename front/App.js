@@ -12,6 +12,7 @@ import Login from './screens/Login';
 import Signup from './screens/Signup';
 import CreateScreen from './screens/CreateScreen';
 import CreateTwoScreen from './screens/CreateTwoScreen';
+import CreateThreeScreen from './screens/CreateThreeScreen';
 import CameraScreen from './screens/CameraScreen';
 import ImagePickerScreen from './screens/ImagePickerScreen';
 import PickerCategoryScreen from './screens/PickerCategoryScreen';
@@ -86,6 +87,7 @@ const createStack = createStackNavigator({
   Camera: {screen: CameraScreen},
   Gallery: {screen: ImagePickerScreen},
   CreateTwo: {screen: CreateTwoScreen},
+  CreateThree: {screen: CreateThreeScreen},
   CategoryPicker: {screen: PickerCategoryScreen},
 })
 
