@@ -39,13 +39,16 @@ return(
     onChangeText={(e) => setReserve(e)}></TextInput>}
 
     <Text>Buy it now</Text>
+    <Text>Buyers can purchase immediately at this price.</Text>
     <Switch onValueChange={() => setIsReserve(!isReserve)} value={isReserve}></Switch>
     {isReserve 
     &&  <TextInput style={{height: 40, width: 100, borderWidth: 0.5}}
         keyboardType='numeric' value={buyNow}
         onChangeText={(e) => setBuyNow(e)}></TextInput>}
 
-    <Text>Last day</Text>
+    <Text>Auction Duration</Text>
+    <TextInput style={{height: 40, width: 100, borderWidth: 0.5}} keyboardType='numeric' value={buyNow}
+    onChangeText={(e) => setBuyNow(e)}></TextInput>
 
     <Button title='STEP 3' onPress={()=> props.navigation.navigate('CreateFour')}></Button>
     </View>
