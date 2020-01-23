@@ -8,9 +8,18 @@ const CreateThreeScreen = (props) => {
 
     const createContext = useContext(Context);
 
-    const [isCheck, setCheck] = useState("");
-
-    const { imageProduct, productTitle, setProductTitle, productDescript, setProductDescript } = createContext;
+    const { startPrice,
+        setStartPrice,
+        reserve,
+        setReserve,
+        limitDay,
+        setLimitDay,
+        buyNow,
+        setBuyNow,
+        isBuyCheck,
+        setIsBuyCheck,
+        isReserve,
+        setIsReserve } = createContext;
 
 
 return(
@@ -19,15 +28,24 @@ return(
 
     <Text>Starting Price</Text>
     <TextInput style={{height: 40, width: 100, borderWidth: 0.5}}
-    onChangeText={(e) => setProductTitle(e)} value={productTitle} keyboardType='numeric'></TextInput>
+    onChangeText={(e) => setStartPrice(e)} value={startPrice} keyboardType='numeric'></TextInput>
 
     <Text>Reserve (optional)</Text>
     <Text>This is the minimal price you want the item to be sold</Text>
-    <TextInput style={{height: 40, width: 100, borderWidth: 0.5}} keyboardType='numeric'></TextInput>
+    <Switch onValueChange={() => setIsBuyCheck(!isBuyCheck)} value={isBuyCheck}></Switch>
+    {isBuyCheck
+    && <TextInput style={{height: 40, width: 100, borderWidth: 0.5}} 
+    keyboardType='numeric' value={reserve}
+    onChangeText={(e) => setReserve(e)}></TextInput>}
 
     <Text>Buy it now</Text>
-    <TextInput style={{height: 40, width: 100, borderWidth: 0.5}}
-    onChangeText={(e) => setProductTitle(e)} value={productTitle} keyboardType='numeric'></TextInput>
+    <Switch onValueChange={() => setIsReserve(!isReserve)} value={isReserve}></Switch>
+    {isReserve 
+    &&  <TextInput style={{height: 40, width: 100, borderWidth: 0.5}}
+        keyboardType='numeric' value={buyNow}
+        onChangeText={(e) => setBuyNow(e)}></TextInput>}
+
+    <Text>Last day</Text>
 
     <Button title='STEP 3' onPress={()=> props.navigation.navigate('CreateFour')}></Button>
     </View>

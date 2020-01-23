@@ -40,6 +40,11 @@ const socket = io('http://192.168.1.75:5000')
 
     const [limitDay, setLimitDay] = useState(new Date);
 
+    // CONDITIONALS
+    const [isBuyCheck, setIsBuyCheck] = useState(false);
+
+    const [isReserve, setIsReserve] = useState(false);
+
 
 
     useEffect(() => {
@@ -172,7 +177,11 @@ const data = {
     limitDay,
     setLimitDay,
     buyNow,
-    setBuyNow
+    setBuyNow,
+    isBuyCheck,
+    setIsBuyCheck,
+    isReserve,
+    setIsReserve
 }
 
 // const reload = () => socket.emit('init_communication')
