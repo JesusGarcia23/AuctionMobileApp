@@ -38,7 +38,7 @@ const socket = io('http://192.168.1.75:5000')
 
     const [buyNow, setBuyNow] = useState(0)
 
-    const [limitDay, setLimitDay] = useState(new Date);
+    const [limitDay, setLimitDay] = useState(1);
 
     // CONDITIONALS
     const [isBuyCheck, setIsBuyCheck] = useState(false);

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
-import {View, Text, Image, Button, TextInput, Switch, Slider, Picker, TouchableWithoutFeedback} from 'react-native';
-import { CheckBox } from 'react-native-elements'
+import {View, Text, Button, TextInput, Switch, Slider, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import { Context } from '../hookAndContext/context';
-import { Keyboard } from 'react-native';
 
 const CreateThreeScreen = (props) => {
 
@@ -56,16 +54,26 @@ return(
         </View>}
 
     <Text>Auction Duration</Text>
-    <View style={{flexDirection:'row', alignItems: 'center' }}>
     <Text>Days</Text>
-    <TextInput style={{height: 40, width: 100, borderWidth: 0.5}} keyboardType='numeric' value={buyNow}
-    onChangeText={(e) => setBuyNow(e)}></TextInput>
+
+    <View style={{alignSelf: 'center'}}>
+    <View style={{flexDirection: 'row', justifyContent: 'space-around', width:300}}>
+    <Text>1</Text><Text>2</Text><Text>3</Text><Text>4</Text><Text>5</Text><Text>6</Text><Text>7</Text>
+    </View>
+    
+    <Slider minimumValue={1} maximumValue={7} value={1} step={1} onValueChange={(e) => setLimitDay(e)}></Slider>
     </View>
 
     <Button title='STEP 3' onPress={()=> props.navigation.navigate('CreateFour')}></Button>
     </View>
     </TouchableWithoutFeedback>
 )
+}
+
+
+const styleText = {
+        width: 50
+   
 }
 
 export default CreateThreeScreen;
