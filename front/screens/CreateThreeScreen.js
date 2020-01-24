@@ -71,9 +71,4 @@ return(
 }
 
 
-const styleText = {
-        width: 50
-   
-}
-
 export default CreateThreeScreen;
