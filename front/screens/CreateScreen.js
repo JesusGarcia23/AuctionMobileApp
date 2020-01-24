@@ -11,6 +11,9 @@ const CreateScreen = (props) => {
     console.log(createContext);
 
     const { imageProduct } = createContext;
+    
+    let preview = imageProduct ? imageProduct.uri : null;
+
     const [hasPermission, setHasPermission] = useState(null);
 
     const getPermissionAsync = async() => {
@@ -43,7 +46,7 @@ const CreateScreen = (props) => {
 
 return(
     <View>
-    <Image style={{width: 150, height: 150}} source={{uri: `${imageProduct}`}}/>
+    <Image style={{width: 150, height: 150}} source={{uri: `${preview}`}}/>
     <Text>Create</Text>
     <Button title='Take a picture' onPress={() => goToCamera()}/>
     <Button title='Choose a picture from gallery' onPress={() => goToGallery()}/>

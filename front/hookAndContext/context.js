@@ -66,8 +66,7 @@ const socket = io('http://192.168.1.75:5000')
 const updatePicture = (theImg, props) => {
     console.log("THIS IS PICTURE");
     console.log(theImg.uri);
-    const uri = theImg.uri;
-    setImageProduct(uri);
+    setImageProduct(theImg);
     props.navigation.navigate('Create');
     // this.setState({imageProduct: uri}), () => {
     //     props.navigation.navigate('Create');
