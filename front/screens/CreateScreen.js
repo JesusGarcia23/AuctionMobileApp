@@ -11,7 +11,7 @@ const CreateScreen = (props) => {
     console.log(createContext);
 
     const { imageProduct } = createContext;
-    
+
     let preview = imageProduct ? imageProduct.uri : null;
 
     const [hasPermission, setHasPermission] = useState(null);
@@ -50,7 +50,7 @@ return(
     <Text>Create</Text>
     <Button title='Take a picture' onPress={() => goToCamera()}/>
     <Button title='Choose a picture from gallery' onPress={() => goToGallery()}/>
-    <Button title='STEP 2' onPress={()=> props.navigation.navigate('CreateTwo')}></Button>
+    <Button title='Continue' onPress={()=> props.navigation.navigate('CreateTwo')}></Button>
     </View>
 )
 }

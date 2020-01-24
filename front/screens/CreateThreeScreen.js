@@ -64,7 +64,7 @@ return(
     <Slider minimumValue={1} maximumValue={7} value={1} step={1} onValueChange={(e) => setLimitDay(e)}></Slider>
     </View>
 
-    <Button title='STEP 3' onPress={()=> props.navigation.navigate('CreateFour')}></Button>
+    <Button title='LIST ITEM' onPress={()=> props.navigation.navigate('Feed')}></Button>
     </View>
     </TouchableWithoutFeedback>
 )

@@ -54,7 +54,7 @@ return(
     <TextInput style={{height: 40, width: 250, borderWidth: 0.5}}
     onChangeText={(e) => setProductDescript(e)} value={productDescript}></TextInput>
 
-    <Button title='STEP 3' onPress={()=> props.navigation.navigate('CreateThree')}></Button>
+    <Button title='Continue' onPress={()=> props.navigation.navigate('CreateThree')}></Button>
     </View>
 )
 }
