@@ -111,7 +111,9 @@ const newProduct = () => {
 
     const imageData = imageProduct
 
-    apit.post('/makeNewAuction')
+    // api.post('/makeNewAuction', data, {withCredentials: true})
+    
+    return true;
 }
 
 const uploadNewImage = async (e) => {
@@ -175,7 +177,8 @@ const data = {
     isBuyCheck,
     setIsBuyCheck,
     isReserve,
-    setIsReserve
+    setIsReserve,
+    newProduct
 }
 
 // const reload = () => socket.emit('init_communication')

@@ -17,10 +17,14 @@ const CreateThreeScreen = (props) => {
         isBuyCheck,
         setIsBuyCheck,
         isReserve,
-        setIsReserve } = createContext;
+        setIsReserve,
+        newProduct } = createContext;
 
-    const createNewAuct = () => {
-        props.navigation.navigate('Feed')
+    const createNewAuct = async () => {
+        let response = await newProduct();
+        if(response) {
+            props.navigation.navigate('Feed');
+        }
     }
 
 return(
