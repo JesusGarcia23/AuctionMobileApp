@@ -68,9 +68,6 @@ const updatePicture = (theImg, props) => {
     console.log(theImg.uri);
     setImageProduct(theImg);
     props.navigation.navigate('Create');
-    // this.setState({imageProduct: uri}), () => {
-    //     props.navigation.navigate('Create');
-    // };
 }
 
 const logIn = ({email, password}) => {
@@ -112,11 +109,8 @@ const logOut = () => {
    
 }
 
-const newProduct = ({description}) => {
-    // api.post('/newBonsai', {description})
-    // .then(response => {
-    //     console.log(response);
-    // }).catch(err => console.error(err));
+const newProduct = () => {
+    apit.post('/makeNewAuction')
 }
 
 const uploadNewImage = async (e) => {

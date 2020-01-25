@@ -11,13 +11,13 @@ cloudinary.config({
 
 var storage = cloudinaryStorage({
     cloudinary,
-    folder: 'bonsai-care',
+    folder: 'AuctionApp',
     allowedFormats: ['jpg', 'png'],
 
     filename: function (req, file, cb) {
 
         const time = new Date();
-        const imageName = `bonsai-care/${file.originalname}${req.user.firstName}${time}`
+        const imageName = `auction-app/${file.originalname}${req.user.firstName}${time}`
 
         //Check if duplicates
         const imageArray = Image.find({publicId: imageName})

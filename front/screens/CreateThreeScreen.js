@@ -19,6 +19,9 @@ const CreateThreeScreen = (props) => {
         isReserve,
         setIsReserve } = createContext;
 
+    const createNewAuct = () => {
+        props.navigation.navigate('Feed')
+    }
 
 return(
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -64,7 +67,7 @@ return(
     <Slider minimumValue={1} maximumValue={7} value={1} step={1} onValueChange={(e) => setLimitDay(e)}></Slider>
     </View>
 
-    <Button title='LIST ITEM' onPress={()=> props.navigation.navigate('Feed')}></Button>
+    <Button title='LIST ITEM' onPress={()=> createNewAuct()}></Button>
     </View>
     </TouchableWithoutFeedback>
 )
