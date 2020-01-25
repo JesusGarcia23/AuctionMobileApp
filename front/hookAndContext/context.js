@@ -8,27 +8,14 @@ const socket = io('http://192.168.1.75:5000')
 
  const Provider = (props) => {
 
-    const state = {
-        user: currentUser,
-        auctions: [],
-        notifications: [],
-        auctionTitle: '',
-        auctionStartingPrice: '',
-        imageProduct: null,
-        bid: '',
-        auctionDescription: '',
-        updatePicture: updatePicture,
-        logIn: logIn
-    }
-
     const [currentUser, setCurrentUser] = useState(null);
 
     //New auction values
     const [imageProduct, setImageProduct] = useState(null);
 
-    const [productCategory, setProductCategory] = useState("");
-
     const [productTitle, setProductTitle] = useState("");
+
+    const [productCategory, setProductCategory] = useState("");
 
     const [productDescript, setProductDescript] = useState("");
 
@@ -40,7 +27,7 @@ const socket = io('http://192.168.1.75:5000')
 
     const [limitDay, setLimitDay] = useState(1);
 
-    // CONDITIONALS
+    // CONDITIONALS WHEN MAKING NEW AUCTIONS
     const [isBuyCheck, setIsBuyCheck] = useState(false);
 
     const [isReserve, setIsReserve] = useState(false);
@@ -110,6 +97,20 @@ const logOut = () => {
 }
 
 const newProduct = () => {
+    const data = {
+        title: productTitle,
+        description: productDescript,
+        category: productCategory,
+        startingPrice: startPrice,
+        reserve: reserve,
+        buyNow: buyNow,
+        duration: limitDay,
+        isBuyCheck: isBuyCheck,
+        isReserve: isReserve,
+    }
+
+    const imageData = imageProduct
+
     apit.post('/makeNewAuction')
 }
 

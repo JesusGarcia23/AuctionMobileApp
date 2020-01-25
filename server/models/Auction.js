@@ -28,7 +28,7 @@ const auctionSchema = new Schema({
     },
     productCondition: {
         type: String,
-        enum: ['Other','Used','Open Box','Reconditioned', 'New']
+        enum: ['Does not apply','Used', 'New']
     },
     reserve: {
         available: { type: Boolean, default: false },
@@ -38,7 +38,9 @@ const auctionSchema = new Schema({
         available: { type: Boolean, default: false },
         cost: { type: Number, default: 0 },
     },
-
+    duration: {
+        type: Number,
+    },
     participants: [{type: Schema.Types.ObjectId, ref: "User"}],
 
     bids: [{type: Schema.Types.ObjectId, ref: "Bid"}],
