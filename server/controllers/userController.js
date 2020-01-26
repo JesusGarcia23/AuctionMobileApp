@@ -2,7 +2,8 @@ const Image = require('../models/Image');
 
 module.exports = {
     makeNewAuct(req, res) {
-        console.log(req.body)
+        console.log(req.user);
+        console.log(req.body);
         res.json(req.body);
     },
 

@@ -109,11 +109,18 @@ const newProduct = () => {
         isReserve: isReserve,
     }
 
-    const imageData = imageProduct
+    const uploadData = new FormData();
+    await uploadData.append('imageUrl', imageProduct);
+    api.post('/uploadNewImg', uploadData)
+    .then(response => {
+        console.log(response);
+    }).catch(err => {
+        console.error(err);
+    });
 
     // api.post('/makeNewAuction', data, {withCredentials: true})
     
-    return true;
+    // return true;
 }
 
 const uploadNewImage = async (e) => {
