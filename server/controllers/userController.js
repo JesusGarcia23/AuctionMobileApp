@@ -50,18 +50,4 @@ module.exports = {
        // res.json(req.body);
     },
 
-    // async uploadImage(req, res) {
-    //     if(!req.file){
-    //         next(new Error('No file uploaded!'));
-    //         return;
-    //     }
-    //     try {
-    //         console.log("THIS HAPPENEED!")
-    //         console.log(req.file)
-             
-
-    //     }catch(err) {
-    //         res.json({message: err})
-    //     }
-    // }
 }

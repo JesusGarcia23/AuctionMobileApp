@@ -120,7 +120,7 @@ const newProduct = async () => {
         name: theName
     });
 
-    api.post('/uploadNewImg', uploadData, {withCredentials: true})
+    api.post('/newAuction', uploadData, {withCredentials: true})
     .then(response => {
         console.log(response);
     }).catch(err => {
