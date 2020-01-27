@@ -24,10 +24,19 @@ module.exports = {
                     description: "",
                     category: 'Bonsai',
                     startingPrice: 0,
-                    imageProduct: theImage.imageUrl,
+                    imageProduct: {
+                       imageId: theImage._id,
+                       url: theImage.imageUrl
+                    },
                     productCondition: "",
-                    reserve: "",
-                    buyNow: "",
+                    reserve: {
+                        available: '',
+                        cost: '',
+                    },
+                    buyNow: {
+                        available: '',
+                        cost
+                    },
                     duration: 1,
                     participants: [],
                     bids: [],
