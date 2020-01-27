@@ -27,7 +27,6 @@ const CreateScreen = (props) => {
     }
 
     const goToGallery = async() => {
-        getPermissionAsync();
         if(hasPermission) {
             let result = await ImagePicker.launchImageLibraryAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -40,6 +39,7 @@ const CreateScreen = (props) => {
             updatePicture(result, props);
         }else {
           getPermissionAsync();
+          <Text>No permission</Text>
         }
     }
 

@@ -96,7 +96,9 @@ const logOut = () => {
    
 }
 
-const newProduct = () => {
+const newProduct = async () => {
+    console.log("HEY IMAGE");
+    console.log(imageProduct.uri);
     const data = {
         title: productTitle,
         description: productDescript,
@@ -110,8 +112,15 @@ const newProduct = () => {
     }
 
     const uploadData = new FormData();
-    await uploadData.append('imageUrl', imageProduct);
-    api.post('/uploadNewImg', uploadData)
+    const pictureName = imageProduct.uri.split('/')
+    const theName = pictureName[pictureName.length - 1];
+    await uploadData.append('imageUrl', {
+        uri: imageProduct.uri,
+        type: imageProduct.type,
+        name: theName
+    });
+
+    api.post('/uploadNewImg', uploadData, {withCredentials: true})
     .then(response => {
         console.log(response);
     }).catch(err => {
@@ -121,22 +130,6 @@ const newProduct = () => {
     // api.post('/makeNewAuction', data, {withCredentials: true})
     
     // return true;
-}
-
-const uploadNewImage = async (e) => {
-    e.preventDefault();
-    console.log(imageUpload)
-    const time = new Date();
-    console.log(time)
-    const imageName = `${currentUser.firstName}${imageUpload.name}`
-    imageUpload.owner = imageName;
-    const uploadData = new FormData();
-    await uploadData.append("imageUrl", imageUpload)
-    console.log(uploadData)
-    // api.post('/uploadNewImg', uploadData, {withCredentials: true})
-    // .then(response => {
-    //     console.log(response)
-    // }).catch(err => console.error(err))
 }
 
 const handler = (data, type, props) => {
@@ -199,3 +192,18 @@ export const ContextConsumer = Context.Consumer
 
 export { Context , Provider }
 
+// const uploadNewImage = async (e) => {
+//     e.preventDefault();
+//     console.log(imageUpload)
+//     const time = new Date();
+//     console.log(time)
+//     const imageName = `${currentUser.firstName}${imageUpload.name}`
+//     imageUpload.owner = imageName;
+//     const uploadData = new FormData();
+//     await uploadData.append("imageUrl", imageUpload)
+//     console.log(uploadData)
+    // api.post('/uploadNewImg', uploadData, {withCredentials: true})
+    // .then(response => {
+    //     console.log(response)
+    // }).catch(err => console.error(err))
+//}

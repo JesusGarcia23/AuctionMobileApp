@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 
 app.use(session({
-    secret: 'bonsai is art',
+    secret: 'auction everything',
     saveUninitialized: false,
     resave: false,
     store: new MongoStore({

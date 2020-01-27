@@ -24,7 +24,7 @@ const auctionSchema = new Schema({
         default: 0,
     },
     imageProduct: {
-        type: Schema.Types.ObjectId, ref: "Image"
+        type: String
     },
     productCondition: {
         type: String,

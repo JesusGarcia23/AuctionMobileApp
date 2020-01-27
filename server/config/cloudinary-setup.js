@@ -1,7 +1,6 @@
 const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
 const multer = require('multer');
-const Image = require('../models/Image');
 
 cloudinary.config({
     cloud_name: process.env.cloudName,
@@ -15,13 +14,10 @@ var storage = cloudinaryStorage({
     allowedFormats: ['jpg', 'png'],
 
     filename: function (req, file, cb) {
-
+        console.log("THIS IS MULTER");
+        console.log(file)
         const time = new Date();
         const imageName = `auction-app/${file.originalname}${req.user.firstName}${time}`
-
-        //Check if duplicates
-        const imageArray = Image.find({publicId: imageName})
-        console.log(imageArray);
 
         //WITH NO FILENAME AS SECOND PARAMETER, IT GENERATES ONE RANDOMLY
         cb(null, imageName);

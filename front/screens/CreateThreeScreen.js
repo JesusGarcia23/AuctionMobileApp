@@ -35,7 +35,7 @@ return(
     <View style={{flexDirection:'row', alignItems: 'center' }}>
     <Text>$</Text>
     <TextInput style={{height: 40, width: 100, borderWidth: 0.5}}
-    onChangeText={(e) => setStartPrice(e)} value={startPrice} keyboardType='numeric'></TextInput>
+    onChangeText={(e) => setStartPrice(e)} value={startPrice.toString()} keyboardType='numeric'></TextInput>
     </View>
 
     <Text>Reserve (optional)</Text>
