@@ -17,7 +17,21 @@ module.exports = {
                 publicId: public_id,
                 imageUrl: secure_url
             }).then(theImage => {
-                console.log(theImage);
+                console.log(theImage)
+                Auction.create({
+                    owner: "",
+                    title: "",
+                    description: "",
+                    category: 'Bonsai',
+                    startingPrice: 0,
+                    imageProduct: theImage.imageUrl,
+                    productCondition: "",
+                    reserve: "",
+                    buyNow: "",
+                    duration: 1,
+                    participants: [],
+                    bids: [],
+                })
 
             })
         }catch {
