@@ -5,8 +5,6 @@ const User = require('../models/User');
 module.exports = {
 
    async uploadImg(req, res) {
-    console.log("THIS IS FILE");
-    console.log(req.file);
     if(!req.file) {
         next(new Error('No File uploaded!'))
         return;
@@ -30,29 +28,32 @@ module.exports = {
 
    async makeNewAuct(req, res) {
        console.log(req.body);
-            //   await  Auction.create({
-            //         owner: req.user.id,
-            //         title: "",
-            //         description: "",
-            //         category: 'Bonsai',
-            //         startingPrice: 0,
-            //         imageProduct: {
-            //            imageId: theImage._id,
-            //            url: theImage.imageUrl
-            //         },
-            //         productCondition: "Does not apply",
-            //         reserve: {
-            //             available: false,
-            //             cost: 0,
-            //         },
-            //         buyNow: {
-            //             available: false,
-            //             cost: 0,
-            //         },
-            //         duration: 1,
-            //         participants: [],
-            //         bids: [],
-            //     })
+       const {title, description, productCondition, startingPrice, reserve, buyNow, duration, isBuyCheck, isReserve, publicId, imageUrl} = req.body
+
+              await  Auction.create({
+                    owner: req.user.id,
+                    title: title,
+                    description: description,
+                    category: 'Bonsai',
+                    productCondition: productCondition,
+                    startingPrice: startingPrice,
+                    imageProduct: {
+                       imageId: publicId,
+                       url: imageUrl
+                    },
+                    productCondition: "Does not apply",
+                    reserve: {
+                        available: isReserve,
+                        cost: reserve,
+                    },
+                    buyNow: {
+                        available: isBuyCheck,
+                        cost: buyNow,
+                    },
+                    duration: duration,
+                    participants: [],
+                    bids: [],
+                })
 
             },
      

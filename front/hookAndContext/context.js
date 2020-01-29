@@ -15,7 +15,7 @@ const socket = io('http://192.168.1.75:5000')
 
     const [productTitle, setProductTitle] = useState("");
 
-    const [productCategory, setProductCategory] = useState("");
+    const [productCondition, setProductCondition] = useState("");
 
     const [productDescript, setProductDescript] = useState("");
 
@@ -112,20 +112,21 @@ const newProduct = async () => {
     api.post('/uploadImg', uploadData, {withCredentials: true})
     .then(response => {
         console.log(response);
-        const {imageUrl} = response.data
+        const {imageUrl, publicId} = response.data
 
           
     const data = {
         title: productTitle,
         description: productDescript,
-        category: productCategory,
+        productCondition: productCondition,
         startingPrice: startPrice,
         reserve: reserve,
         buyNow: buyNow,
         duration: limitDay,
         isBuyCheck: isBuyCheck,
         isReserve: isReserve,
-        imageUrl: imageUrl
+        imageUrl: imageUrl,
+        publicId: publicId,
     }
 
     api.post('/newAuction',data, { withCredentials: true })
@@ -167,8 +168,8 @@ const data = {
     imageProduct,
     setImageProduct,
     updatePicture,
-    productCategory,
-    setProductCategory,
+    productCondition,
+    setProductCondition,
     productTitle, 
     setProductTitle,
     productDescript,
