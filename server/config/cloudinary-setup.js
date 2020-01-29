@@ -14,8 +14,7 @@ var storage = cloudinaryStorage({
     allowedFormats: ['jpg', 'png'],
 
     filename: function (req, file, cb) {
-        console.log("THIS IS MULTER");
-        console.log(file)
+
         const time = new Date();
         const imageName = `auction-app/${file.originalname}${req.user.firstName}${time}`
 

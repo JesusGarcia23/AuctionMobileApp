@@ -9,7 +9,7 @@ const CreateTwoScreen = (props) => {
 
     const [isCheck, setCheck] = useState("");
 
-    const { imageProduct, productTitle, setProductTitle, productDescript, setProductDescript } = createContext;
+    const { imageProduct, productTitle, setProductTitle, productDescript, setProductDescript , productCategory , setProductCategory} = createContext;
 
 
     const checkTheBox = (option) => {
@@ -31,22 +31,22 @@ return(
     <View style={{alignItems: 'center', width: 110}}>
     <Text>Does not apply</Text>
     <CheckBox size={20} center={true} containerStyle={{backgroundColor: 'transparent', width: 40}}
-    checked={isCheck === 'Does not apply'}
-    onPress={() => checkTheBox('Does not apply')}/>
+    checked={productCategory === 'Does not apply'}
+    onPress={() => setProductCategory('Does not apply')}/>
     </View>
 
     <View style={{alignItems: 'center', width:110}}>
     <Text>Used</Text>
     <CheckBox size={20} center={true} containerStyle={{backgroundColor: 'transparent', width: 80}}
-    checked={isCheck === 'Used'}
-    onPress={() => checkTheBox('Used')}/>
+    checked={productCategory === 'Used'}
+    onPress={() => setProductCategory('Used')}/>
     </View>
 
     <View style={{alignItems: 'center', width: 110}}>
     <Text>New</Text>
     <CheckBox size={20} center={true} containerStyle={{backgroundColor: 'transparent', width: 80}}
-    checked={isCheck === 'New'}
-    onPress={() => checkTheBox('New')}/>
+    checked={productCategory === 'New'}
+    onPress={() => setProductCategory('New')}/>
     </View>
 
     </View>

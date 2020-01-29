@@ -8,13 +8,15 @@ const CreateScreen = (props) => {
 
     const createContext = useContext(Context);
 
-    console.log(createContext);
-
     const { imageProduct } = createContext;
 
     let preview = imageProduct ? imageProduct.uri : null;
 
     const [hasPermission, setHasPermission] = useState(null);
+
+    useEffect(() => {
+        getPermissionAsync();
+    }, [])
 
     const getPermissionAsync = async() => {
         const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);

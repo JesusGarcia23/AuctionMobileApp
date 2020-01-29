@@ -99,6 +99,22 @@ const logOut = () => {
 const newProduct = async () => {
     console.log("HEY IMAGE");
     console.log(imageProduct.uri);
+  
+    const uploadData = new FormData();
+    const pictureName = imageProduct.uri.split('/')
+    const theName = pictureName[pictureName.length - 1];
+    await uploadData.append('imageUrl', {
+        uri: imageProduct.uri,
+        type: imageProduct.type,
+        name: theName
+    });
+
+    api.post('/uploadImg', uploadData, {withCredentials: true})
+    .then(response => {
+        console.log(response);
+        const {imageUrl} = response.data
+
+          
     const data = {
         title: productTitle,
         description: productDescript,
@@ -109,20 +125,11 @@ const newProduct = async () => {
         duration: limitDay,
         isBuyCheck: isBuyCheck,
         isReserve: isReserve,
+        imageUrl: imageUrl
     }
 
-    const uploadData = new FormData();
-    const pictureName = imageProduct.uri.split('/')
-    const theName = pictureName[pictureName.length - 1];
-    await uploadData.append('imageUrl', {
-        uri: imageProduct.uri,
-        type: imageProduct.type,
-        name: theName
-    });
+    api.post('/newAuction',data, { withCredentials: true })
 
-    api.post('/newAuction', uploadData, {withCredentials: true})
-    .then(response => {
-        console.log(response);
     }).catch(err => {
         console.error(err);
     });
