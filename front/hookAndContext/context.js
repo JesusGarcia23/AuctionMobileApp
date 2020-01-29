@@ -130,7 +130,12 @@ const newProduct = async () => {
         imageId: _id,
     }
 
-    api.post('/newAuction',data, { withCredentials: true })
+    api.post('/newAuction', data , { withCredentials: true })
+    .then(response => {
+        console.log(response);
+    }).catch(err => {
+        console.log(err);
+    })
 
     }).catch(err => {
         console.error(err);
