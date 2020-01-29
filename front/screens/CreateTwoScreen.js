@@ -7,17 +7,7 @@ const CreateTwoScreen = (props) => {
 
     const createContext = useContext(Context);
 
-    const [isCheck, setCheck] = useState("");
-
     const { imageProduct, productTitle, setProductTitle, productDescript, setProductDescript , productCategory , setProductCategory} = createContext;
-
-
-    const checkTheBox = (option) => {
-       setCheck(option);
-    
-    }
-
-    
 
 return(
     <View style={{}}>
