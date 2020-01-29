@@ -28,7 +28,7 @@ module.exports = {
 
    async makeNewAuct(req, res) {
        console.log(req.body);
-       const {title, description, productCondition, startingPrice, reserve, buyNow, duration, isBuyCheck, isReserve, publicId, imageUrl} = req.body
+       const {title, description, productCondition, startingPrice, reserve, buyNow, duration, isBuyCheck, isReserve, publicId, imageUrl, imageId} = req.body
 
               await  Auction.create({
                     owner: req.user.id,
@@ -38,7 +38,8 @@ module.exports = {
                     productCondition: productCondition,
                     startingPrice: startingPrice,
                     imageProduct: {
-                       imageId: publicId,
+                       imageId: imageId,
+                       publicId: publicId,
                        url: imageUrl
                     },
                     productCondition: "Does not apply",
@@ -53,6 +54,10 @@ module.exports = {
                     duration: duration,
                     participants: [],
                     bids: [],
+                }).then(newAuct => {
+                    res.json(newAuct);
+                }).catch(err => {
+                    res.json(err);
                 })
 
             },

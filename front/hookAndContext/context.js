@@ -112,7 +112,7 @@ const newProduct = async () => {
     api.post('/uploadImg', uploadData, {withCredentials: true})
     .then(response => {
         console.log(response);
-        const {imageUrl, publicId} = response.data
+        const {imageUrl, publicId, _id} = response.data
 
           
     const data = {
@@ -127,6 +127,7 @@ const newProduct = async () => {
         isReserve: isReserve,
         imageUrl: imageUrl,
         publicId: publicId,
+        imageId: _id,
     }
 
     api.post('/newAuction',data, { withCredentials: true })
