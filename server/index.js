@@ -37,7 +37,7 @@ require('./config/passport/passport.setup')(app)
 
 app.use(cors({
     credentials: true,
-    origin: ["http://localhost:3000", "exp://192.168.1.75:19006", "http://192.168.1.75:3000", "exp://192.168.125.250:19000"]
+    origin: ["http://localhost:3000", "exp://192.168.1.75:19006", "http://192.168.1.75:3000", "exp://192.168.125.250:19000", 'http://192.168.1.20:3000', 'exp://192.168.1.20:3000']
 }))
 app.use(routes)
 

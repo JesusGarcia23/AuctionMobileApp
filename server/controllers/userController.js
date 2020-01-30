@@ -27,7 +27,7 @@ module.exports = {
    },
 
    async makeNewAuct(req, res) {
-       console.log(req.body);
+       
        const {title, description, productCondition, startingPrice, reserve, buyNow, duration, isBuyCheck, isReserve, publicId, imageUrl, imageId} = req.body
 
               await  Auction.create({

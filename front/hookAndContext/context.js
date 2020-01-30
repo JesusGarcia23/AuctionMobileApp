@@ -4,7 +4,7 @@ import api from '../services/api';
 
 const Context = React.createContext();
 
-const socket = io('http://192.168.1.75:5000')
+const socket = io('http://192.168.1.20:5000')
 
  const Provider = (props) => {
 
@@ -97,9 +97,7 @@ const logOut = () => {
 }
 
 const newProduct = async () => {
-    console.log("HEY IMAGE");
-    console.log(imageProduct.uri);
-  
+
     const uploadData = new FormData();
     const pictureName = imageProduct.uri.split('/')
     const theName = pictureName[pictureName.length - 1];
@@ -111,10 +109,9 @@ const newProduct = async () => {
 
     api.post('/uploadImg', uploadData, {withCredentials: true})
     .then(response => {
-        console.log(response);
-        const {imageUrl, publicId, _id} = response.data
 
-          
+        const {imageUrl, publicId, _id} = response.data
+     
     const data = {
         title: productTitle,
         description: productDescript,
@@ -130,20 +127,18 @@ const newProduct = async () => {
         imageId: _id,
     }
 
-    api.post('/newAuction', data , { withCredentials: true })
-    .then(response => {
-        console.log(response);
-    }).catch(err => {
-        console.log(err);
-    })
+    return api.post('/newAuction', data , { withCredentials: true })
+   
+    }).then(response => {
+        if(response.data) {
+            console.log("THIS WAS RETURNED");
+            console.log(response.data);
+            return response.data;
+        }
 
-    }).catch(err => {
-        console.error(err);
-    });
+    }).catch(err => {console.log(err); })
 
-    // api.post('/makeNewAuction', data, {withCredentials: true})
-    
-    // return true;
+
 }
 
 const handler = (data, type, props) => {
