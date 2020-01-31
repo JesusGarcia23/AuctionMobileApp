@@ -58,6 +58,9 @@ const styles = StyleSheet.create({
     text: {
         color: 'red',
     },
+    list: {
+      
+    }
   });
 
 export default ListAuct;
