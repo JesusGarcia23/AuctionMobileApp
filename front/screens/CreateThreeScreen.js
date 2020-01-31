@@ -20,14 +20,8 @@ const CreateThreeScreen = (props) => {
         setIsReserve,
         newProduct } = createContext;
 
-    const createNewAuct = () => {
-        let response =  newProduct();
-        console.log("RESPONSE!")
-        console.log(response);
-
-        if(response) {
-            props.navigation.navigate('Feed');
-        }
+   const createNewAuct = () => {
+         newProduct(props);
     }
 
 return(

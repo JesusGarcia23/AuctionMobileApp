@@ -96,7 +96,7 @@ const logOut = () => {
    
 }
 
-const newProduct = async () => {
+const newProduct = async (props) => {
 
     const uploadData = new FormData();
     const pictureName = imageProduct.uri.split('/')
@@ -107,7 +107,7 @@ const newProduct = async () => {
         name: theName
     });
 
-    api.post('/uploadImg', uploadData, {withCredentials: true})
+   await api.post('/uploadImg', uploadData, {withCredentials: true})
     .then(response => {
 
         const {imageUrl, publicId, _id} = response.data
@@ -127,17 +127,14 @@ const newProduct = async () => {
         imageId: _id,
     }
 
-    return api.post('/newAuction', data , { withCredentials: true })
+    return api.post('/newAuction', data , { withCredentials: true });
    
     }).then(response => {
         if(response.data) {
-            console.log("THIS WAS RETURNED");
-            console.log(response.data);
-            return response.data;
+            props.navigation.navigate('Feed');
         }
 
     }).catch(err => {console.log(err); })
-
 
 }
 
