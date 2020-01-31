@@ -21,8 +21,8 @@ import HomeScreen from './screens/HomeScreen';
 import MainScreen from './screens/MainScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ManageScreen from './screens/ManageScreen';
-import SearchAuct from './screens/SearchAuct';
-import ListAuct from './screens/SearchAuct';
+import SearchAuct from './screens/FeedScreen';
+import FeedScreen from './screens/FeedScreen';
 
 
 class App extends Component {
@@ -51,7 +51,7 @@ const authStack = createStackNavigator({
 
 //ELEMENT OF BOTTOM TAB NAVIGATOR FEED SHOWING ALL THE AUCTIONS GOING ON
 const FeedStack = createStackNavigator({
-  Feed: {screen: ListAuct,
+  Feed: {screen: FeedScreen,
     navigationOptions: ({navigation}) => ({
       header: () => <Header data={navigation.state}/>
     }), 
