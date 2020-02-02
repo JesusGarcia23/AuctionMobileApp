@@ -13,6 +13,7 @@ router.delete('/logout', authController.logOut);
 
 // USER ROUTES
 router.post('/uploadImg', uploader.single('imageUrl'), userController.uploadImg);
-router.post('/newAuction', userController.makeNewAuct) 
+router.post('/newAuction', userController.makeNewAuct);
+router.get('/allAucts', userController.getAllAucts);
 
 module.exports = router

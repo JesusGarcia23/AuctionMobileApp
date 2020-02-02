@@ -61,6 +61,16 @@ module.exports = {
                 })
 
             },
+
+    getAllAucts(req, res) {
+        Auction.find({})
+        .then(allAucts => {
+            res.json(allAucts);
+        }).catch(err => {
+            console.log(err);
+        })
+        
+    }
      
         }
        // console.log(req.body);

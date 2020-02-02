@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
+import api from '../services/api';
 
 const ListAuct = (props) => {
 
@@ -18,6 +19,18 @@ const ListAuct = (props) => {
         },
       ];
 
+      const [data, setData] = useState([]);
+
+      const getTheData = async() => {
+        api.get('/allAucts')
+        .then(response => {
+          console.log(response.data);
+        }).catch(err => { console.log(err)});
+      }
+
+      useEffect(() => {
+        getTheData();
+      }, [])
 
       const Item = ({ title }) => {
           return (
